@@ -5,5 +5,5 @@
   <endpoint
       name="Guess"
       implementation="fr.eni.mg.ws.guess.GuessImpl"
-      url-pattern="/guess"/>
+      url-pattern="/Guess"/>
 </endpoints>
