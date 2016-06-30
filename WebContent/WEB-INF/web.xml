@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Accueil</display-name>
+    <servlet-name>Accueil</servlet-name>
+    <servlet-class>fr.eni.mg.servlets.Accueil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Accueil</servlet-name>
+    <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoDisplayIndex</display-name>
+    <servlet-name>DoDisplayIndex</servlet-name>
+    <servlet-class>fr.eni.mg.servlets.DoDisplayIndex</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoDisplayIndex</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
 </web-app>
