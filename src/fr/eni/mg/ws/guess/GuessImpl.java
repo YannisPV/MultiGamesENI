@@ -12,7 +12,7 @@ import javax.jws.WebService;
  * @date 30 juin 2016
  * @version MultiGamesENI - V1.0
  */
-@WebService(endpointInterface = "fr.eni.mg.ws.guess")
+@WebService(endpointInterface = "fr.eni.mg.ws.guess.Guess")
 public class GuessImpl implements Guess {
 
 	private int number;
