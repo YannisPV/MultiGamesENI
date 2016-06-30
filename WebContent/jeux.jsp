@@ -3,5 +3,6 @@
 </jsp:include>
 
 <main>
-	<div class="divHomeInsert">Liste des Jeux</div>
+	<div class="divTitle">Liste des Jeux</div>
+	<a href="">JEUX DU GUESS</a>
 </main>

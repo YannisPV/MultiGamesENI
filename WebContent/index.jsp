@@ -3,7 +3,7 @@
 </jsp:include>
 
 <main>
-	<div class="divHomeInsert">Insert Pseudo</div>
+	<div class="divTitle animText">Insert Pseudo</div>
 	<form action="./jeux" method="POST" class="formPseudo">
 		<input type="text" class="inputPseudo" />
 		<input type="submit" class="btnStart" value="Start Game" />
