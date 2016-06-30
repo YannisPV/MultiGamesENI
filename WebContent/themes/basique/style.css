@@ -49,3 +49,18 @@ body {
     visibility: hidden;
   }
 }
+.formPseudo {
+	margin: auto;
+	width: 300px;
+}
+.inputPseudo {
+	background-color: black;
+	border: none;
+	color: white;
+ 	font-family: 'Press Start 2P', cursive;
+	font-size: 30px;
+	height: 50px;
+	outline: none;
+	width: 100%;
+}
+

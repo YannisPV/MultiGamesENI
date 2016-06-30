@@ -30,19 +30,29 @@
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
   <listener>
-        <listener-class>
+    <listener-class>
         	com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>Guess</servlet-name>
-        <servlet-class>
+  </listener>
+  <servlet>
+    <servlet-name>Guess</servlet-name>
+    <servlet-class>
         	com.sun.xml.ws.transport.http.servlet.WSServlet
         </servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Guess</servlet-name>
-        <url-pattern>/guess</url-pattern>
-    </servlet-mapping>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Guess</servlet-name>
+    <url-pattern>/guess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoDisplayJeux</display-name>
+    <servlet-name>DoDisplayJeux</servlet-name>
+    <servlet-class>fr.eni.mg.servlets.DoDisplayJeux</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoDisplayJeux</servlet-name>
+    <url-pattern>/jeux</url-pattern>
+  </servlet-mapping>
 </web-app>
