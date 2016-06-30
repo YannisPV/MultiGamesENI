@@ -21,7 +21,7 @@ import fr.eni.mg.util.AccesBase;
  */
 public class JoueurDAO {
 
-	public static List<Joueur> ListeJoueur()throws SQLException {
+	public static List<Joueur> ListeJoueurs()throws SQLException {
 		Connection cnx=null;
 		Statement rqt=null;
 		ResultSet rs=null;
