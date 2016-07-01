@@ -138,4 +138,31 @@ public class JoueurDAO {
 		
 		return joueur;
 	}
+	/**
+	 * Méthode qui permet de rechercher un joueur dans la BD.
+	 * @param joueur Bean joueur à rechercher.
+	 * @throws SQLException Exception de type SQL.
+	 */
+	public static Joueur rechercheId(Joueur joueur) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		ResultSet rs=null;
+		Joueur joueurResult = null;
+		try{
+			
+			cnx=AccesBase.getConnection();
+			rqt=cnx.prepareStatement("select * from joueurs where nom = ?");
+			rqt.setString(1, joueur.getNom());
+			rs=rqt.executeQuery();
+			while (rs.next()){
+				joueurResult = new Joueur(rs.getInt("id"), rs.getString("nom"));
+			}
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		
+		return joueurResult;
+	}
 }

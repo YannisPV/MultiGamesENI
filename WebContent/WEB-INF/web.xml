@@ -61,10 +61,6 @@
     <servlet-name>DoDisplayJeux</servlet-name>
     <url-pattern>/jeux</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Guess</servlet-name>
-    <url-pattern>/guess</url-pattern>
-  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>DoDisplayGuess</display-name>
@@ -73,7 +69,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoDisplayGuess</servlet-name>
-    <url-pattern>/guess</url-pattern>
+    <url-pattern>/displayGuess</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

@@ -4,8 +4,8 @@
 
 <main>
 	<div class="divTitle animText">Insert Pseudo</div>
-	<form action="./jeux" method="POST" class="formPseudo">
-		<input type="text" class="inputPseudo" />
+	<form action="<%=request.getContextPath()%>/jeux" method="POST" class="formPseudo">
+		<input type="text" class="inputPseudo" id="pseudo" name="pseudo" />
 		<input type="submit" class="btnStart" value="Start Game" />
 	</form>
 </main>
