@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import fr.eni.mg.bo.Jeu;
+import fr.eni.mg.bo.Joueur;
+import fr.eni.mg.bo.Partie;
+import fr.eni.mg.dao.JeuDAO;
+import fr.eni.mg.dao.JoueurDAO;
+import fr.eni.mg.dao.PartieDAO;
 import fr.eni.mg.ws.guess.Guess;
 
 /**
@@ -48,7 +54,12 @@ public class DoDisplayGuess extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) {
+		Jeu jeu = new Jeu(0,"Guess");
+		Joueur joueur =  (Joueur) request.getSession().getAttribute("joueurConnecte");
 		try {
+			jeu = JeuDAO.rechercheId(jeu);
+			Partie partie = new Partie(0,jeu,joueur,false);
+			PartieDAO.addPartie(partie);
 			this.getServletContext().getRequestDispatcher("/guess.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.mg.bo.Jeu;
+import fr.eni.mg.bo.Joueur;
 import fr.eni.mg.util.AccesBase;
 
 /**
@@ -137,5 +138,33 @@ public class JeuDAO {
 		}
 		
 		return jeu;
+	}
+	
+	/**
+	 * Méthode qui permet de rechercher un jeu dans la BD.
+	 * @param jeu Bean jeu à rechercher.
+	 * @throws SQLException Exception de type SQL.
+	 */
+	public static Jeu rechercheId(Jeu jeu) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		ResultSet rs=null;
+		Jeu jeuResult = null;
+		try{
+			
+			cnx=AccesBase.getConnection();
+			rqt=cnx.prepareStatement("select * from jeux where nom = ?");
+			rqt.setString(1, jeu.getNom());
+			rs=rqt.executeQuery();
+			while (rs.next()){
+				jeuResult = new Jeu(rs.getInt("id"), rs.getString("nom"));
+			}
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		
+		return jeuResult;
 	}
 }

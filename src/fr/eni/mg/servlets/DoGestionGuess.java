@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import fr.eni.mg.bo.Jeu;
 import fr.eni.mg.bo.Joueur;
+import fr.eni.mg.bo.Partie;
+import fr.eni.mg.dao.JeuDAO;
+import fr.eni.mg.dao.PartieDAO;
 import fr.eni.mg.ws.guess.Guess;
 
 /**
@@ -52,6 +56,7 @@ public class DoGestionGuess extends HttpServlet {
 		URL url = null;
 		String resultat;
 		try {
+			
 			Joueur joueurConnecte = (Joueur)request.getSession().getAttribute("joueurConnecte");
 			url = new URL(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
 					request.getContextPath() + "/Guess?wsdl");
@@ -63,6 +68,13 @@ public class DoGestionGuess extends HttpServlet {
 			Guess guess = service.getPort(Guess.class);
 			resultat = guess.guess(Integer.parseInt(request.getParameter("inputNumber")), joueurConnecte.getNom());
 			request.setAttribute("resultat", resultat);
+			if ("gagne".equals(resultat)){
+				Jeu jeu = new Jeu(0,"Guess");
+				jeu = JeuDAO.rechercheId(jeu);
+				Joueur joueur =  (Joueur) request.getSession().getAttribute("joueurConnecte");
+				Partie partie = new Partie(0,jeu,joueur,true);
+				PartieDAO.ModifPartie(partie);
+			}
 			
 			// Condition en fonction d'une bonne ou d'une mauvaise réponse
 			// Redirige sur la page du formulaire ou sur la page de victoire
