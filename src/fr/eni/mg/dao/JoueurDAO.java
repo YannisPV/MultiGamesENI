@@ -23,7 +23,11 @@ import fr.eni.mg.util.AccesBase;
 public class JoueurDAO {
 
 	/**
+<<<<<<< HEAD
 	 * Retourne la liste des joueurs présent dans la BD.
+=======
+	 * Retourne la liste des joueurs présente dans la BD.
+>>>>>>> branch 'master' of https://github.com/YannisPV/MultiGamesENI
 	 * @return La liste peut être vide mais jamais <code>null</code>
 	 * @throws SQLException Exception de type SQL.
 	 */
