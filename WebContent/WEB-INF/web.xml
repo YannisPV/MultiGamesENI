@@ -59,7 +59,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoDisplayJeux</servlet-name>
-    <url-pattern>/jeux</url-pattern>
+    <url-pattern>/jeu</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -69,7 +69,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoDisplayGuess</servlet-name>
-    <url-pattern>/displayGuess</url-pattern>
+    <url-pattern>/jeux/displayGuess</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -79,6 +79,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoGestionGuess</servlet-name>
-    <url-pattern>/guess-validator</url-pattern>
+    <url-pattern>/jeux/guess-validator</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>Restriction</display-name>
+    <filter-name>Restriction</filter-name>
+    <filter-class>fr.eni.mg.filtre.Restriction</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Restriction</filter-name>
+    <url-pattern>/jeux/*</url-pattern>
+  </filter-mapping>
 </web-app>

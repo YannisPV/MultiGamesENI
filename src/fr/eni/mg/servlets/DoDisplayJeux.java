@@ -100,7 +100,7 @@ public class DoDisplayJeux extends HttpServlet {
 	 * @param response
 	 */
 	private void redirectionMenuJeux(HttpServletRequest request, HttpServletResponse response) {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/jeux.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jeux/jeux.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {

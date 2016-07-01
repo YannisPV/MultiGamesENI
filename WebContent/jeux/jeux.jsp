@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="PageStructure/head.jsp">
+<jsp:include page="/PageStructure/head.jsp">
 	<jsp:param name="titre" value="Liste des Jeux" />
 </jsp:include>
 
@@ -10,7 +10,7 @@
 <div class="menu">
 	<h1>Liste des Jeux</h1>
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/displayGuess">JEUX DU GUESS</a></li>
+		<li><a href="<%=request.getContextPath()%>/jeux/displayGuess">JEUX DU GUESS</a></li>
 
 	</ul>
 </div>

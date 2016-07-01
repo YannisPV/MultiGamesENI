@@ -75,7 +75,7 @@ public class DoGestionGuess extends HttpServlet {
 					Partie partie = (Partie) request.getSession().getAttribute("partie");
 					partie.setResultat(true);
 					PartieDAO.ModifPartie(partie);
-					this.getServletContext().getRequestDispatcher("/jeux.jsp").forward(request, response);
+					this.getServletContext().getRequestDispatcher("/jeux/jeux.jsp").forward(request, response);
 					return;
 				}
 				
@@ -99,7 +99,7 @@ public class DoGestionGuess extends HttpServlet {
 	 * @param response
 	 */
 	private void redirectionMenuJeux(HttpServletRequest request, HttpServletResponse response) {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/guess.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jeux/guess.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {

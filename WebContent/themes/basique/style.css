@@ -42,13 +42,18 @@ body{
     padding: 10px;
     text-decoration: none;
     margin: 0 auto;
+    margin-bottom: 15px;
 }
 .btnOld:hover{
 	color:black;
 	background-color: white;
 }
-input[type="text"]{
-	color: black;
+input[type="text"],input[type="number"]{
+	background-color: black;
+    color: white;
+    text-align: center;
+    height: 30px;
+    margin-bottom: 15px;
 }
 .form{
 	margin-top: 15px;
