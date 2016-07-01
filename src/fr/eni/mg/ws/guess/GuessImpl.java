@@ -15,13 +15,14 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "fr.eni.mg.ws.guess.Guess")
 public class GuessImpl implements Guess {
 
-	private int number;
+	private int number = 0;
 	/** 
 	 * {@inheritDoc}
 	 * @see fr.eni.mg.ws.guess.Guess#guess(int)
 	 */
 	@Override
 	public String guess(int number) {
+		if(this.number == 0) newGame();
 		if(number > this.number){
 			return "moins";
 		}else if(number < this.number){
