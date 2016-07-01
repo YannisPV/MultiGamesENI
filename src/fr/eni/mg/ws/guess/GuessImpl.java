@@ -3,6 +3,7 @@
  */
 package fr.eni.mg.ws.guess;
 
+import java.util.Hashtable;
 import java.util.Random;
 
 import javax.jws.WebService;
@@ -15,19 +16,20 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "fr.eni.mg.ws.guess.Guess")
 public class GuessImpl implements Guess {
 
-	private int number = 0;
+	private Hashtable tabGame = new Hashtable();
 	/** 
 	 * {@inheritDoc}
 	 * @see fr.eni.mg.ws.guess.Guess#guess(int)
 	 */
 	@Override
-	public String guess(int number) {
-		if(this.number == 0) newGame();
-		if(number > this.number){
+	public String guess(int number, String nom) {
+		int numberToFind = GetNumber(nom);
+		if(number > numberToFind){
 			return "moins";
-		}else if(number < this.number){
+		}else if(number < numberToFind){
 			return "plus";
 		}
+		tabGame.remove(nom);
 		return "gagner";
 	}
 
@@ -36,9 +38,15 @@ public class GuessImpl implements Guess {
 	 * @see fr.eni.mg.ws.guess.Guess#newGame()
 	 */
 	@Override
-	public void newGame() {
-		Random rand = new Random();
-		this.number = rand.nextInt(100);
+	public int GetNumber(String nom) {
+		if(!tabGame.containsKey(nom)){
+			Random rand = new Random();
+			tabGame.put(nom, rand.nextInt(100));
+		}else if((Integer)tabGame.get(nom) == 0){
+			tabGame.remove(nom);
+			return GetNumber(nom);
+		}
+		return (Integer)tabGame.get(nom);
 	}
 
 }

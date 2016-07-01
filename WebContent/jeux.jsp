@@ -4,7 +4,7 @@
 </jsp:include>
 
 <main>
-	<div class="divTitle">Liste des Jeux</div>
+	<div class="">Liste des Jeux</div>
 	<c:if test="${!empty sessionScope.joueurConnecte}">
 		<h2>${joueurConnecte.getNom()}</h2>
 	</c:if>

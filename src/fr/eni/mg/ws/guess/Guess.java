@@ -18,8 +18,8 @@ import javax.jws.soap.SOAPBinding.Style;
 public interface Guess {
 	
 	@WebMethod
-	public String guess(int number);
+	public String guess(int number, String nom);
 	
 	@WebMethod
-	public void newGame();
+	public int GetNumber(String nom);
 }

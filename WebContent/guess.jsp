@@ -4,7 +4,7 @@
 </jsp:include>
 
 <main>
-	<div class="divTitle">Jeux du Guess</div>
+	<div class="">Jeux du Guess</div>
 
 	<form action="<%=request.getContextPath()%>/guess-validator" method="POST">
 

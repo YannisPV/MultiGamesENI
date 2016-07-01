@@ -3,9 +3,8 @@
 </jsp:include>
 
 <main>
-	<div class="divTitle animText">Insert Pseudo</div>
 	<form action="<%=request.getContextPath()%>/jeux" method="POST" class="formPseudo">
-		<input type="text" class="inputPseudo" id="pseudo" name="pseudo" />
+		<input type="text" class="inputPseudo" id="pseudo" name="pseudo" value="Insert Pseudo" />
 		<input type="submit" class="btnStart" value="Start Game" />
 	</form>
 </main>
