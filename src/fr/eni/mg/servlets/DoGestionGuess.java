@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import fr.eni.mg.bo.Joueur;
 import fr.eni.mg.ws.guess.Guess;
 
 /**
@@ -51,6 +52,7 @@ public class DoGestionGuess extends HttpServlet {
 		URL url = null;
 		String resultat;
 		try {
+			Joueur joueurConnecte = (Joueur)request.getSession().getAttribute("joueurConnecte");
 			url = new URL(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
 					request.getContextPath() + "/Guess?wsdl");
 			
@@ -59,7 +61,7 @@ public class DoGestionGuess extends HttpServlet {
 			Service service = Service.create(url, qname);
 			
 			Guess guess = service.getPort(Guess.class);
-			resultat = guess.guess(Integer.parseInt(request.getParameter("inputNumber")));
+			resultat = guess.guess(Integer.parseInt(request.getParameter("inputNumber")), joueurConnecte.getNom());
 			request.setAttribute("resultat", resultat);
 			
 			// Condition en fonction d'une bonne ou d'une mauvaise réponse
