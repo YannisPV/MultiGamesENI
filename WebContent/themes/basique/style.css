@@ -1,0 +1,63 @@
+@import url("http://fonts.googleapis.com/css?family=Press+Start+2P");
+*{
+	font-family: "Press Start 2P";
+	color: white;
+}
+h1, p, a, h2{
+	position: relative;  
+	z-index: 1; 
+	color: white;
+	text-align: center;
+	margin: 0;
+}
+h1{
+	
+}
+body{
+	background-color: black;
+}
+.menu,
+.menu h1{
+	text-align: left;
+	margin:0;
+	font-size: 20px;
+}
+.menu li{
+	font-size: 15px;
+}
+.nomJoueur{
+	float:right;
+}
+.center{
+	margin-top: 250px;
+}
+.btnOld{
+    border: 2px solid white;
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    display: block;
+    top: 30%;
+    left: 0;
+    padding: 10px;
+    text-decoration: none;
+    margin: 0 auto;
+}
+.btnOld:hover{
+	color:black;
+	background-color: white;
+}
+input[type="text"]{
+	color: black;
+}
+.form{
+	margin-top: 15px;
+	text-align: center;	
+}
+
+#pseudo{
+	margin: 16px auto;
+    text-align: center;
+    height: 36px;
+    display: block;
+}
