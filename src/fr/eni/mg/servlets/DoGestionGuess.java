@@ -49,6 +49,7 @@ public class DoGestionGuess extends HttpServlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		URL url = null;
+		String resultat;
 		try {
 			url = new URL(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
 					request.getContextPath() + "/Guess?wsdl");
@@ -58,10 +59,12 @@ public class DoGestionGuess extends HttpServlet {
 			Service service = Service.create(url, qname);
 			
 			Guess guess = service.getPort(Guess.class);
+			resultat = guess.guess(Integer.parseInt(request.getParameter("inputNumber")));
+			request.setAttribute("resultat", resultat);
 			
 			// Condition en fonction d'une bonne ou d'une mauvaise réponse
 			// Redirige sur la page du formulaire ou sur la page de victoire
-			// this.getServletContext().getRequestDispatcher("/guess.jsp").forward(request, response);
+			 this.getServletContext().getRequestDispatcher("/guess.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
