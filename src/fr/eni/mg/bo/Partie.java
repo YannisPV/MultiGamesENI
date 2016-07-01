@@ -80,7 +80,7 @@ public class Partie {
 	 * Getter pour resultat.
 	 * @return the resultat
 	 */
-	public boolean isResultat() {
+	public boolean getResultat() {
 		return resultat;
 	}
 	/**

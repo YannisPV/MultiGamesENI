@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.mg.bo.Joueur;
+import fr.eni.mg.bo.Jeu;
 import fr.eni.mg.util.AccesBase;
 
 /**
@@ -20,27 +20,27 @@ import fr.eni.mg.util.AccesBase;
  * @version MultiGamesENI - V1.0
  *
  */
-public class JoueurDAO {
+public class JeuDAO {
 
 	/**
-	 * Retourne la liste des joueurs présente dans la BD.
+	 * Retourne la liste des jeux présente dans la BD.
 	 * @return La liste peut être vide mais jamais <code>null</code>
 	 * @throws SQLException Exception de type SQL.
 	 */
-	public static List<Joueur> ListeJoueurs()throws SQLException {
+	public static List<Jeu> ListeJeux()throws SQLException {
 		Connection cnx=null;
 		Statement rqt=null;
 		ResultSet rs=null;
-		List<Joueur> listeJoueurs = new ArrayList<Joueur>();
+		List<Jeu> ListeJeux = new ArrayList<Jeu>();
 		try{
 			cnx=AccesBase.getConnection();
 			rqt=cnx.createStatement();			
-			rs=rqt.executeQuery("select * from joueurs");
-			Joueur joueur;
+			rs=rqt.executeQuery("select * from jeux");
+			Jeu jeu;
 			while (rs.next()){
-				joueur = new Joueur(
+				jeu = new Jeu(
 						);
-				listeJoueurs.add(joueur);				
+				ListeJeux.add(jeu);				
 			}
 		}finally{
 			if (rs!=null) rs.close();
@@ -48,21 +48,21 @@ public class JoueurDAO {
 			if (cnx!=null) cnx.close();
 		}
 		
-		return listeJoueurs;
+		return ListeJeux;
 	}	
 	/**
-	 * Méthode qui permet d'ajouter un joueur dans la BD.
-	 * @param joueur Bean joueur à ajouter.
+	 * Méthode qui permet d'ajouter un jeu dans la BD.
+	 * @param jeu Bean jeu à ajouter.
 	 * @throws SQLException Exception de type SQL.
 	 */
-	public static void ajouter(Joueur joueur) throws SQLException{
+	public static void ajouter(Jeu jeu) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 
 		try{
 			cnx=AccesBase.getConnection();
-			rqt=cnx.prepareStatement("insert into joueurs(nom) values (?)");
-			rqt.setString(1, joueur.getNom());
+			rqt=cnx.prepareStatement("insert into jeux(nom) values (?)");
+			rqt.setString(1, jeu.getNom());
 			rqt.executeUpdate();
 		}finally{
 			if (rqt!=null) rqt.close();
@@ -71,17 +71,17 @@ public class JoueurDAO {
 	}
 	
 	/**
-	 * Méthode qui permet de supprimer un joueur dans la BD.
-	 * @param joueur Bean joueur à supprimer.
+	 * Méthode qui permet de supprimer un jeu dans la BD.
+	 * @param jeu Bean jeu à supprimer.
 	 * @throws SQLException Exception de type SQL.
 	 */
-	public static void supprimer(Joueur joueur) throws SQLException{
+	public static void supprimer(Jeu jeu) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		try{
 			cnx=AccesBase.getConnection();
-			rqt=cnx.prepareStatement("delete from joueurs where id = ?");
-			rqt.setInt(1, joueur.getId());
+			rqt=cnx.prepareStatement("delete from jeux where id = ?");
+			rqt.setInt(1, jeu.getId());
 			rqt.executeUpdate();
 		}finally{
 			if (rqt!=null) rqt.close();
@@ -90,18 +90,18 @@ public class JoueurDAO {
 	}
 	
 	/**
-	 * Méthode qui permet de modifier un joueur dans la BD.
-	 * @param joueur Bean joueur à modifer.
+	 * Méthode qui permet de modifier un jeu dans la BD.
+	 * @param jeu Bean jeu à modifer.
 	 * @throws SQLException Exception de type SQL.
 	 */
-	public static void modifier(Joueur joueur) throws SQLException{
+	public static void modifier(Jeu jeu) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		try{
 			cnx=AccesBase.getConnection();
-			rqt=cnx.prepareStatement("update joueurs set nom = ? where id = ?");
-			rqt.setString(1, joueur.getNom());
-			rqt.setInt(2, joueur.getId());
+			rqt=cnx.prepareStatement("update jeux set nom = ? where id = ?");
+			rqt.setString(1, jeu.getNom());
+			rqt.setInt(2, jeu.getId());
 
 			rqt.executeUpdate();
 		}finally{
@@ -110,21 +110,21 @@ public class JoueurDAO {
 		}
 	}
 	/**
-	 * Méthode qui permet de rechercher un joueur dans la BD.
-	 * @param joueur Bean joueur à rechercher.
+	 * Méthode qui permet de rechercher un jeu dans la BD.
+	 * @param jeu Bean jeu à rechercher.
 	 * @throws SQLException Exception de type SQL.
 	 */
-	public static Joueur rechercherById(Joueur joueur) throws SQLException{
+	public static Jeu rechercherById(Jeu jeu) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		ResultSet rs=null;
 		try{
 			cnx=AccesBase.getConnection();
-			rqt=cnx.prepareStatement("select * from joueurs where id = ?");
-			rqt.setInt(1, joueur.getId());
+			rqt=cnx.prepareStatement("select * from jeux where id = ?");
+			rqt.setInt(1, jeu.getId());
 			rs=rqt.executeQuery();
 			while (rs.next()){
-				joueur.setNom(rs.getString("nom"));
+				jeu.setNom(rs.getString("nom"));
 			}
 		}finally{
 			if (rs!=null) rs.close();
@@ -132,6 +132,6 @@ public class JoueurDAO {
 			if (cnx!=null) cnx.close();
 		}
 		
-		return joueur;
+		return jeu;
 	}
 }
