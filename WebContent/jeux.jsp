@@ -1,5 +1,5 @@
 <jsp:include page="PageStructure/head.jsp">
-	<jsp:param name="titre" value="Accueil" />
+	<jsp:param name="titre" value="Liste des Jeux" />
 </jsp:include>
 
 <main>

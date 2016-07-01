@@ -9,71 +9,80 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <resource-ref>
     <description>Pool de connexion vers la base MultiGamesENI</description>
     <res-ref-name>jdbc/MultiGamesENI</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
-  
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>Accueil</display-name>
     <servlet-name>Accueil</servlet-name>
     <servlet-class>fr.eni.mg.servlets.Accueil</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>Accueil</servlet-name>
     <url-pattern>/accueil</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>DoDisplayIndex</display-name>
     <servlet-name>DoDisplayIndex</servlet-name>
     <servlet-class>fr.eni.mg.servlets.DoDisplayIndex</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>DoDisplayIndex</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
-  
   <listener>
-        <listener-class>
+    <listener-class>
         	com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
-    </listener>
-    
-    <servlet>
-        <servlet-name>Guess</servlet-name>
-        <servlet-class>
+  </listener>
+  <servlet>
+    <servlet-name>Guess</servlet-name>
+    <servlet-class>
         	com.sun.xml.ws.transport.http.servlet.WSServlet
         </servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>Guess</servlet-name>
     <url-pattern>/guess</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>DoDisplayJeux</display-name>
     <servlet-name>DoDisplayJeux</servlet-name>
     <servlet-class>fr.eni.mg.servlets.DoDisplayJeux</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>DoDisplayJeux</servlet-name>
     <url-pattern>/jeux</url-pattern>
   </servlet-mapping>
-        
-    <servlet-mapping>
-        <servlet-name>Guess</servlet-name>
-        <url-pattern>/guess</url-pattern>
-    </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Guess</servlet-name>
+    <url-pattern>/guess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoDisplayGuess</display-name>
+    <servlet-name>DoDisplayGuess</servlet-name>
+    <servlet-class>fr.eni.mg.servlets.DoDisplayGuess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoDisplayGuess</servlet-name>
+    <url-pattern>/guess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoGestionGuess</display-name>
+    <servlet-name>DoGestionGuess</servlet-name>
+    <servlet-class>fr.eni.mg.servlets.DoGestionGuess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoGestionGuess</servlet-name>
+    <url-pattern>/guess-validator</url-pattern>
+  </servlet-mapping>
 </web-app>
