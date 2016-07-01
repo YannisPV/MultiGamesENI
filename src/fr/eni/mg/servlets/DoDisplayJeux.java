@@ -88,7 +88,7 @@ public class DoDisplayJeux extends HttpServlet {
 				// Présenter la réponse
 				redirectionMenuJeux(request, response);
 			}
-			this.getServletContext().getRequestDispatcher("/index").forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

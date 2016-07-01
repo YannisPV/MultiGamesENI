@@ -3,6 +3,7 @@ package fr.eni.mg.servlets;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,22 +67,44 @@ public class DoGestionGuess extends HttpServlet {
 			Service service = Service.create(url, qname);
 			
 			Guess guess = service.getPort(Guess.class);
-			resultat = guess.guess(Integer.parseInt(request.getParameter("inputNumber")), joueurConnecte.getNom());
-			request.setAttribute("resultat", resultat);
-			if ("gagne".equals(resultat)){
-				Jeu jeu = new Jeu(0,"Guess");
-				jeu = JeuDAO.rechercheId(jeu);
-				Joueur joueur =  (Joueur) request.getSession().getAttribute("joueurConnecte");
-				Partie partie = new Partie(0,jeu,joueur,true);
-				PartieDAO.ModifPartie(partie);
+			if (request.getParameter("inputNumber")!=null){
+				int inputnumber = Integer.parseInt(request.getParameter("inputNumber"));
+				resultat = guess.guess(inputnumber, joueurConnecte.getNom());
+				request.setAttribute("resultat", resultat);
+				if ("gagner".equals(resultat)){
+					Partie partie = (Partie) request.getSession().getAttribute("partie");
+					partie.setResultat(true);
+					PartieDAO.ModifPartie(partie);
+					this.getServletContext().getRequestDispatcher("/jeux.jsp").forward(request, response);
+					return;
+				}
+				
+				// Condition en fonction d'une bonne ou d'une mauvaise réponse
+				// Redirige sur la page du formulaire ou sur la page de victoire
+				redirectionMenuJeux(request, response);
+			}else{
+				String message = "Le nombre ne peut être null";
+				request.setAttribute("messageErreur", message);
+				redirectionMenuJeux(request, response);
+				return;
 			}
 			
-			// Condition en fonction d'une bonne ou d'une mauvaise réponse
-			// Redirige sur la page du formulaire ou sur la page de victoire
-			 this.getServletContext().getRequestDispatcher("/guess.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Methode en charge de .
+	 * @param request
+	 * @param response
+	 */
+	private void redirectionMenuJeux(HttpServletRequest request, HttpServletResponse response) {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/guess.jsp");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

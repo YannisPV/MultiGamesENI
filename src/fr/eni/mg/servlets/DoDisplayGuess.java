@@ -59,7 +59,8 @@ public class DoDisplayGuess extends HttpServlet {
 		try {
 			jeu = JeuDAO.rechercheId(jeu);
 			Partie partie = new Partie(0,jeu,joueur,false);
-			PartieDAO.addPartie(partie);
+			partie = PartieDAO.addPartie(partie);
+			request.getSession().setAttribute("partie", partie);
 			this.getServletContext().getRequestDispatcher("/guess.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

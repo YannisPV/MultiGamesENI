@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,17 +74,24 @@ public class PartieDAO {
 		}
 	}
 	
-	public static void addPartie(Partie partie) throws Exception{
+	public static Partie addPartie(Partie partie) throws Exception{
 		Connection cnx = null;
 		PreparedStatement cmd=null;
 		try{
 			cnx = AccesBase.getConnection();
-			cmd = cnx.prepareStatement("INSERT INTO Partie (JoueurId, JeuId, gagner) VALUES(?, ?, ?)");
+			cmd = cnx.prepareStatement("INSERT INTO Parties (JoueurId, JeuId, gagner) VALUES(?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
 			cmd.setInt(1, partie.getJoueur().getId());
 			cmd.setInt(2, partie.getJeu().getId());
 			cmd.setBoolean(3, partie.getResultat());
 			
 			cmd.executeUpdate();
+			try(ResultSet generatedKeys = cmd.getGeneratedKeys()){
+				if(generatedKeys.next()){
+					partie.setId(generatedKeys.getInt(1));
+				}else{
+					throw new SQLException("Echec de creation de la partie");
+				}
+			}
 		}
 		catch(SQLException sqle){
 			sqle.printStackTrace();
@@ -92,6 +100,7 @@ public class PartieDAO {
 			if(cmd != null) cmd.close();
 			if(cnx != null) cnx.close();
 		}
+		return partie;
 	}
 	
 	public static void ModifPartie(Partie partie) throws Exception{
@@ -99,10 +108,11 @@ public class PartieDAO {
 		PreparedStatement cmd=null;
 		try{
 			cnx = AccesBase.getConnection();
-			cmd = cnx.prepareStatement("UPDATE Partie SET JoueurId = ?, JeuId = ?, gagner = ?)");
+			cmd = cnx.prepareStatement("UPDATE Parties SET JoueurId = ?, JeuId = ?, gagner = ? where id=?");
 			cmd.setInt(1, partie.getJoueur().getId());
 			cmd.setInt(2, partie.getJeu().getId());
 			cmd.setBoolean(3, partie.getResultat());
+			cmd.setInt(4, partie.getId());
 			cmd.executeUpdate();
 		}
 		catch(SQLException sqle){

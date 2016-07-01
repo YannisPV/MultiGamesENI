@@ -2,9 +2,9 @@
 	<jsp:param name="titre" value="Accueil" />
 </jsp:include>
 
-<main>
+<main class="center">
 	<form action="<%=request.getContextPath()%>/jeux" method="POST" class="formPseudo">
-		<input type="text" class="inputPseudo" id="pseudo" name="pseudo" value="Insert Pseudo" />
-		<input type="submit" class="btnStart" value="Start Game" />
+		<input type="text" class="" id="pseudo" name="pseudo" placeholder="Insert Pseudo" />
+		<input type="submit" class="btnOld" value="Start Game" />
 	</form>
 </main>
